@@ -1,0 +1,26 @@
+table, td, th {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 100px;
+}
+
+th , td {
+  height: 50px;
+  padding: 10px;
+}
+input{
+  width: 200px;
+  height: 40px;
+}
+.users-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-row{
+  display: flex;
+}
