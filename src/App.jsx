@@ -30,7 +30,7 @@ function App() {
               </div>
             </div>
            ))
-          : Asc.map((usersData) => (
+          :Asc.map((usersData) => (
             <div className='main-div' key={usersData.id}>
                 <img src={usersData.images[0]} alt="Images" />
                 <div className='title-div'>
