@@ -1,5 +1,11 @@
 .container{
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .main-div{
   width: 200px;
@@ -7,6 +13,10 @@
   display: flex;
   flex-direction: column;
   margin-top: 50px;
+  background-color: rgb(249, 69, 111);
+  padding: 2rem;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .main-div img{
   width: 200px;
@@ -15,12 +25,23 @@
   display: flex;
   flex-direction: column;
 }
-button{
-  width: 50px;
-  height: 50px;
-  font-size: 19px;
+.price{
+  width: max-content;
+  height: max-content;
+  font-size: 14px;
+  color: white;
+  padding: 2px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: rgb(24, 65, 153);
+  background-color: rgb(153, 24, 54);
   border: none;
   border-radius: 5px;
+}
+button{
+  width: 50px;
+  height: 30px;
+  background-color: rgb(142, 25, 62);
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  color: white;
 }
