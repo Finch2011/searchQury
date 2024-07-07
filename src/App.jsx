@@ -16,17 +16,22 @@ function App() {
   return(
 
     <div>
+      <div className='container-button'>
+        <div>
       <button onClick={()=> setSorted(false)} >Ace</button>
       <button onClick={()=> setSorted(true)}>Desc</button>
+      </div>
+      <h1>Products</h1>
+      </div>
       <div className='container'>
         {sorted ?
         Desc.map((usersData) => (
           <div className='main-div' key={usersData.id}>
               <img src={usersData.images[0]} alt="Images" />
               <div className='title-div'>
-              <h3>{usersData.title.slice(0,15)}</h3>
-              <span className='price'>{usersData.price}$</span>
+              <h3>{usersData.title.slice(0,10)}</h3>
               <p>{usersData.description.slice(0 , 125)}</p>
+              <span className='price'>{usersData.price}$</span>
               </div>
             </div>
            ))
