@@ -5,112 +5,45 @@ import './App.css'
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [Filteruser, setFilteruser] = useState([]);
-  const [serched, setSearched] = useState(false);
-  const input = useRef()
-  const select = useRef()
- 
+  const [sorted , setSorted] = useState(false)
   useEffect(()=>{
-      fetch("https://jsonplaceholder.typicode.com/users")
+      fetch("https://api.escuelajs.co/api/v1/products?offset=3&limit=13")
       .then((res) => res.json())
       .then((output) => setUsers(output))
-  },[])
+  },[]);
+  const Desc = [...users].sort((a,b) => b.price - a.price)
+  const Asc = [...users].sort((a,b) => a.price - b.price)
+  return(
 
-  const searchUser = ()=>{
-    setSearched(true);
-    const SearchQury = input.current.value.toLowerCase();
-    if(SearchQury === ""){
-      setSearched(false)
-      setFilteruser([])
-      return;
-    }
-
-    const mainInformation = select.current.value
-    let Filterusers;
-    
-    switch(mainInformation){
-      case "username":
-         Filterusers = users.filter((usersData)=>
-          usersData.username.toLowerCase().includes(SearchQury)
-        )
-        break;
-        case "name":
-         Filterusers = users.filter((usersData)=>
-          usersData.name.toLowerCase().includes(SearchQury)
-        )
-        break;
-        case "email":
-         Filterusers = users.filter((usersData)=>
-          usersData.email.toLowerCase().includes(SearchQury)
-        )
-        break;
-        case "phone":
-         Filterusers = users.filter((usersData)=>
-          usersData.phone.toLowerCase().includes(SearchQury)
-        )
-        break;
-        case "company":
-         Filterusers = users.filter((usersData)=>
-          usersData.company.name.toLowerCase().includes(SearchQury)
-          
-        )
-    }
-    
-
-    setFilteruser(Filterusers)
-  }
-  return (
-    <>
-      <div className='users-container'>
-       <div className="search-row">
-        <input ref={input} onInput={searchUser} type="search" placeholder='searching username ...' />
-         <select name="" id="" ref={select}>
-          <option value="username">UserName</option>
-          <option value="name">Name</option>
-          <option value="email">Email</option>
-          <option value="phone">Phone</option>
-          <option value="company">Company</option>
-         </select>
-       </div>
-      </div>
-      <div className='container-table'>
-      <table>
-        <thead>
-          <tr>
-            <th>UserName</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Company</th>
-          </tr>
-        </thead>
-      
-        <tbody>
-        {serched ? 
-         Filteruser.map((usersData) => (
-            <tr key={usersData.id}>
-             <td>{usersData.username}</td>
-             <td>{usersData.name}</td>
-             <td>{usersData.email}</td>
-             <td>{usersData.phone}</td>
-             <td>{usersData.company.name}</td>
-            </tr>
-           )) : users.map((usersData) => (
-            <tr key={usersData.id}>
-             <td>{usersData.username}</td>
-             <td>{usersData.name}</td>
-             <td>{usersData.email}</td>
-             <td>{usersData.phone}</td>
-             <td>{usersData.company.name}</td>
-            </tr>
+    <div>
+      <button onClick={()=> setSorted(false)} >Ace</button>
+      <button onClick={()=> setSorted(true)}>Desc</button>
+      <div className='container'>
+        {sorted ?
+        Desc.map((usersData) => (
+          <div className='main-div' key={usersData.id}>
+              <img src={usersData.images[0]} alt="Images" />
+              <div className='title-div'>
+              <h3>{usersData.title.slice(0,15)}</h3>
+              <span className='price'>{usersData.price}$</span>
+              <p>{usersData.description.slice(0 , 125)}</p>
+              </div>
+            </div>
            ))
-        }
-        </tbody>
-      </table>
+          :Asc.map((usersData) => (
+            <div className='main-div' key={usersData.id}>
+                <img src={usersData.images[0]} alt="Images" />
+                <div className='title-div'>
+                <h3>{usersData.title.slice(0,15)}</h3>
+                <span className='price'>{usersData.price}$</span>
+                <p>{usersData.description.slice(0 , 125)}</p>
+                </div>
+              </div>
+             ))}
       </div>
-      
-    </>
-  )
+    </div>
+)
+  
 }
 
 export default App
